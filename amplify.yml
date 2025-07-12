@@ -3,16 +3,17 @@ frontend:
   phases:
     preBuild:
       commands:
-        - nvm install 20
+        - nvm install 20  # Ensures Node 20 is used
         - nvm use 20
-        - npm ci
+        - npm ci         # Clean install for consistency
     build:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: dist
+    baseDirectory: dist  # This matches Vite's default output
     files:
       - '**/*'
   cache:
     paths:
       - node_modules/**/*
+      - .npm             # Caches npm packages
