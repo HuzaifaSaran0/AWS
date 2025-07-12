@@ -1,16 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Interactive Static Site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Amazing Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <h1 id="greeting">Hello AWS Amplify</h1>
-    <button onclick="changeText()">Click Me</button>
+    <!-- Animated Navigation -->
+    <nav class="glass-nav">
+        <div class="logo">Portfolio</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-    <script>
-        function changeText() {
-            document.getElementById("greeting").textContent = "Button clicked!";
-        }
-    </script>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="animated-text">Hello, I'm <span>Alex</span></h1>
+            <p class="subtitle">Web Developer & UI Designer</p>
+            <button class="glow-button" id="cta-button">View My Work</button>
+        </div>
+        <div class="hero-image">
+            <img src="assets/profile.PNG" alt="Profile" class="floating">
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2>Featured Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="card-header">
+                    <i class="fas fa-code"></i>
+                    <h3>E-Commerce Site</h3>
+                </div>
+                <p>Built with modern web technologies</p>
+                <button class="card-button">View Project</button>
+            </div>
+            <!-- More project cards... -->
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="contact">
+        <h2>Get In Touch</h2>
+        <form id="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass-footer">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>© 2023 My Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
