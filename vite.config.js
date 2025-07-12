@@ -4,10 +4,11 @@ import { resolve } from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: '',
+  base: '/', // Reset to absolute path
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    manifest: true, // ← Add this line
+    assetsDir: 'static', // Change assets directory
+    manifest: true
   }
-})
+});
