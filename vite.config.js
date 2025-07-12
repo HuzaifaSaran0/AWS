@@ -9,10 +9,5 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     manifest: true, // ← Add this line
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html')
-      }
-    }
   }
 })
