@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Static Site</title>
+    <title>Interactive Static Site</title>
 </head>
 <body>
-    <h1>Hello AWS Amplify</h1>
-    <!-- Regular script (not module) -->
+    <h1 id="greeting">Hello AWS Amplify</h1>
+    <button onclick="changeText()">Click Me</button>
+
     <script>
-        console.log("Working!");
+        function changeText() {
+            document.getElementById("greeting").textContent = "Button clicked!";
+        }
     </script>
 </body>
 </html>
