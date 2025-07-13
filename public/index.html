@@ -111,17 +111,18 @@
       const interest = parseFloat(interestSlider.value);
       const years = parseInt(document.getElementById("years").value);
 
-      fetch("https://2hqqutxk2n36wd7tob5gjdpfvm0fyhse.lambda-url.eu-north-1.on.aws/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          amount: amount,
-          interest: interest,
-          years: years
-        })
-      })
+fetch("https://hxrhpuib6c.execute-api.eu-north-1.amazonaws.com/default/SimpleInterestCalculator2", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    amount: amount,
+    interest: interest,
+    years: years
+  })
+})
+
       .then(response => response.json())
       .then(data => {
         if (data.interest !== undefined) {
