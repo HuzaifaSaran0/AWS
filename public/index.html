@@ -106,13 +106,33 @@
 
     document.getElementById("interest-form").addEventListener("submit", function(e) {
       e.preventDefault();
+
       const amount = parseFloat(document.getElementById("amount").value);
       const interest = parseFloat(interestSlider.value);
       const years = parseInt(document.getElementById("years").value);
 
-      // This part will be replaced with your AWS Lambda integration
-      const simpleInterest = (amount * interest * years) / 100;
-      alert(`Computed Interest: ₹${simpleInterest.toFixed(2)}`);
+      fetch("https://97bcezcfde.execute-api.eu-north-1.amazonaws.com/default/SimpleInterestCalculator", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          amount: amount,
+          interest: interest,
+          years: years
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.interest !== undefined) {
+          alert(`Computed Interest: ₹${data.interest}`);
+        } else {
+          alert("Something went wrong! " + JSON.stringify(data));
+        }
+      })
+      .catch(error => {
+        alert("Error: " + error.message);
+      });
     });
   </script>
 </body>
