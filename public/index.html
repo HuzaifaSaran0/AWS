@@ -1,73 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Amazing Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Interest Calculator-V2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 20px 25px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 280px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input[type="number"], select {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+
+    .slider-value {
+      text-align: right;
+      font-size: 0.9em;
+      color: #333;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 0.75em;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
-    <!-- Animated Navigation -->
-    <nav class="glass-nav">
-        <div class="logo">Portfolio</div>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+  <div class="container">
+    <h2>Simple Interest<br/>Calculator-V2</h2>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="animated-text">Hello, I'm <span>Alex</span></h1>
-            <p class="subtitle">Web Developer & UI Designer</p>
-            <button class="glow-button" id="cta-button">View My Work</button>
-        </div>
-        <div class="hero-image">
-            <img src="assets/profile.png" alt="Profile" class="floating">
-        </div>
-    </section>
+    <form id="interest-form">
+      <label for="amount">Amount</label>
+      <input type="number" id="amount" name="amount" required />
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <h2>Featured Projects</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <div class="card-header">
-                    <i class="fas fa-code"></i>
-                    <h3>E-Commerce Site</h3>
-                </div>
-                <p>Built with modern web technologies</p>
-                <button class="card-button">View Project</button>
-            </div>
-            <!-- More project cards... -->
-        </div>
-    </section>
+      <label for="interest">Interest</label>
+      <input type="range" id="interest" name="interest" min="0" max="20" step="0.25" value="10.25" />
+      <div class="slider-value"><span id="interest-value">10.25</span>%</div>
 
-    <!-- Contact Form -->
-    <section id="contact" class="contact">
-        <h2>Get In Touch</h2>
-        <form id="contact-form">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-    </section>
+      <label for="years">No. of Years</label>
+      <select id="years" name="years">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
 
-    <!-- Footer -->
-    <footer class="glass-footer">
-        <div class="social-links">
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
-        <p>© 2023 My Portfolio. All rights reserved.</p>
-    </footer>
+      <button type="submit">Compute Interest</button>
+    </form>
 
-    <script src="script.js"></script>
+    <div class="footer">
+      © Everyone Can Get Rich<br/>
+      This Calculator belongs to Sapthashree
+    </div>
+  </div>
+
+  <script>
+    const interestSlider = document.getElementById("interest");
+    const interestValue = document.getElementById("interest-value");
+
+    interestSlider.addEventListener("input", () => {
+      interestValue.textContent = interestSlider.value;
+    });
+
+    document.getElementById("interest-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const amount = parseFloat(document.getElementById("amount").value);
+      const interest = parseFloat(interestSlider.value);
+      const years = parseInt(document.getElementById("years").value);
+
+      // This part will be replaced with your AWS Lambda integration
+      const simpleInterest = (amount * interest * years) / 100;
+      alert(`Computed Interest: ₹${simpleInterest.toFixed(2)}`);
+    });
+  </script>
 </body>
 </html>
