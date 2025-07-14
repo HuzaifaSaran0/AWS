@@ -148,10 +148,19 @@
       })
       .then(res => res.json())
       .then(data => {
-        const output = JSON.parse(data.output);  // stringified JSON
-        document.getElementById("outputText").value = output.inputText;
+        console.log("Step Function Output:", data);
+        const capitalized = data.capitalizedOutput?.inputText;
+
+        if (capitalized) {
+          document.getElementById("outputText").value = capitalized;
+        } else {
+          alert("Text transformation failed.\n" + JSON.stringify(data));
+        }
       })
-      .catch(err => alert("Error: " + err.message));
+      .catch(err => {
+        alert("Error: " + err.message);
+        console.error(err);
+      });
     });
   </script>
 
