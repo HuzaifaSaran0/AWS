@@ -137,32 +137,33 @@
     });
 
     // Handle Text Transform Submit
-    document.getElementById("text-transform-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const inputText = document.getElementById("inputText").value;
+    // Handle Text Transform Submit
+document.getElementById("text-transform-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const inputText = document.getElementById("inputText").value;
 
-      fetch("https://0vofkuzmza.execute-api.eu-north-1.amazonaws.com/prod/textTransform", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ inputText })
-      })
-      .then(res => res.json())
-      .then(data => {
-        console.log("Step Function Output:", data);
-        const output = JSON.parse(data.output);
-        const capitalized = output.capitalizedOutput?.inputText;
+  fetch("https://snesgtgh1d.execute-api.eu-north-1.amazonaws.com/prod/capitaliseAndReverse", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ inputText })
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log("Step Function Output:", data);
+    const output = JSON.parse(data.output); // assuming 'output' is returned as a stringified JSON
 
-        if (capitalized) {
-          document.getElementById("outputText").value = capitalized;
-        } else {
-          alert("Text transformation failed.\n" + JSON.stringify(data));
-        }
-      })
-      .catch(err => {
-        alert("Error: " + err.message);
-        console.error(err);
-      });
-    });
+    // Show result in output field
+    if (output.inputText) {
+      document.getElementById("outputText").value = output.inputText;
+    } else {
+      alert("Transformation failed.\n" + JSON.stringify(data));
+    }
+  })
+  .catch(err => {
+    alert("Error: " + err.message);
+    console.error(err);
+  });
+});
   </script>
 
 </body>
